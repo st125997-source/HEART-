@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>❤️ Heart Disease Prediction</h1>
+            <p>Enter patient information to predict heart disease risk</p>
+        </header>
+
+        <div class="content">
+            <div class="input-section">
+                <h2>Patient Information</h2>
+                <form id="predictionForm">
+                    <!-- Age -->
+                    <div class="form-group">
+                        <label for="Age">Age</label>
+                        <input type="number" id="Age" name="Age" 
+                               min="1" max="120" value="50" required>
+                        <small>Patient's age in years</small>
+                    </div>
+
+                    <!-- Sex -->
+                    <div class="form-group">
+                        <label for="Sex">Sex</label>
+                        <select id="Sex" name="Sex" required>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+
+                    <!-- Chest Pain Type -->
+                    <div class="form-group">
+                        <label for="ChestPainType">Chest Pain Type</label>
+                        <select id="ChestPainType" name="ChestPainType" required>
+                            <option value="ATA">ATA (Atypical Angina)</option>
+                            <option value="NAP">NAP (Non-Anginal Pain)</option>
+                            <option value="ASY">ASY (Asymptomatic)</option>
+                            <option value="TA">TA (Typical Angina)</option>
+                        </select>
+                    </div>
+
+                    <!-- Resting BP -->
+                    <div class="form-group">
+                        <label for="RestingBP">Resting Blood Pressure (mm Hg)</label>
+                        <input type="number" id="RestingBP" name="RestingBP" 
+                               min="80" max="200" value="120" required>
+                        <small>Resting blood pressure (80-200 mm Hg)</small>
+                    </div>
+
+                    <!-- Cholesterol -->
+                    <div class="form-group">
+                        <label for="Cholesterol">Cholesterol (mg/dL)</label>
+                        <input type="number" id="Cholesterol" name="Cholesterol" 
+                               min="100" max="600" value="200" required>
+                        <small>Serum cholesterol (100-600 mg/dL)</small>
+                    </div>
+
+                    <!-- Fasting Blood Sugar -->
+                    <div class="form-group">
+                        <label for="FastingBS">Fasting Blood Sugar > 120 mg/dL</label>
+                        <select id="FastingBS" name="FastingBS" required>
+                            <option value="0">No (≤ 120 mg/dL)</option>
+                            <option value="1">Yes (> 120 mg/dL)</option>
+                        </select>
+                    </div>
+
+                    <!-- Resting ECG -->
+                    <div class="form-group">
+                        <label for="RestingECG">Resting ECG</label>
+                        <select id="RestingECG" name="RestingECG" required>
+                            <option value="Normal">Normal</option>
+                            <option value="ST">ST (ST-T wave abnormality)</option>
+                            <option value="LVH">LVH (Left ventricular hypertrophy)</option>
+                        </select>
+                    </div>
+
+                    <!-- Max Heart Rate -->
+                    <div class="form-group">
+                        <label for="MaxHR">Maximum Heart Rate</label>
+                        <input type="number" id="MaxHR" name="MaxHR" 
+                               min="60" max="220" value="150" required>
+                        <small>Maximum heart rate achieved (60-220 bpm)</small>
+                    </div>
+
+                    <!-- Exercise Angina -->
+                    <div class="form-group">
+                        <label for="ExerciseAngina">Exercise-Induced Angina</label>
+                        <select id="ExerciseAngina" name="ExerciseAngina" required>
+                            <option value="N">No</option>
+                            <option value="Y">Yes</option>
+                        </select>
+                    </div>
+
+                    <!-- Oldpeak -->
+                    <div class="form-group">
+                        <label for="Oldpeak">Oldpeak (ST Depression)</label>
+                        <input type="number" id="Oldpeak" name="Oldpeak" 
+                               min="-3" max="10" step="0.1" value="0" required>
+                        <small>ST depression induced by exercise (-3 to 10)</small>
+                    </div>
+
+                    <!-- ST Slope -->
+                    <div class="form-group">
+                        <label for="ST_Slope">ST Slope</label>
+                        <select id="ST_Slope" name="ST_Slope" required>
+                            <option value="Up">Up (Upsloping)</option>
+                            <option value="Flat">Flat</option>
+                            <option value="Down">Down (Downsloping)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="predict-btn">Predict Heart Disease Risk</button>
+                </form>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <h2>Prediction Result</h2>
+                <div class="prediction-card">
+                    <div class="prediction-icon" id="predictionIcon">❤️</div>
+                    <div class="prediction-result" id="predictionResult"></div>
+                    <div class="risk-level" id="riskLevel"></div>
+                    <div class="probability-display">
+                        <div class="probability-label">Risk Probability</div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" id="probabilityFill"></div>
+                        </div>
+                        <div class="probability-value" id="probabilityValue"></div>
+                    </div>
+                    <div class="disclaimer">
+                        <strong>⚠️ Disclaimer:</strong> This is a predictive model for educational purposes only. 
+                        Always consult with healthcare professionals for medical advice.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Heart Disease Prediction | Machine Learning Project</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
